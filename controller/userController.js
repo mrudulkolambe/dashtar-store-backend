@@ -18,7 +18,7 @@ const verifyEmailAddress = async (req, res) => {
       subject: 'Email Activation',
       subject: 'Verify Your Email',
       html: `<h2>Hello ${req.body.email}</h2>
-      <p>Verify your email address to complete the signup and login into your <strong>KachaBazar</strong> account.</p>
+      <p>Verify your email address to complete the signup and login into your <strong>Fruitflix</strong> account.</p>
 
         <p>This link will expire in <strong> 15 minute</strong>.</p>
 
@@ -26,10 +26,10 @@ const verifyEmailAddress = async (req, res) => {
 
         <a href=${process.env.STORE_URL}/user/email-verification/${token} style="background:#22c55e;color:white;border:1px solid #22c55e; padding: 10px 15px; border-radius: 4px; text-decoration:none;">Verify Account</a>
 
-        <p style="margin-top: 35px;">If you did not initiate this request, please contact us immediately at support@kachabazar.com</p>
+        <p style="margin-top: 35px;">If you did not initiate this request, please contact us immediately at <a href='mailto:fruitflix.shop@gmail.com'>fruitflix.shop@gmail.com</a></p>
 
         <p style="margin-bottom:0px;">Thank you</p>
-        <strong>Kachabazar Team</strong>
+        <strong>FruitFlix Team</strong>
              `,
     };
 

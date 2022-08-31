@@ -76,7 +76,7 @@ const forgetPassword = async (req, res) => {
       to: `${req.body.verifyEmail}`,
       subject: 'Password Reset',
       html: `<h2>Hello ${req.body.verifyEmail}</h2>
-      <p>A request has been received to change the password for your <strong>Dashtar</strong> account </p>
+      <p>A request has been received to change the password for your <strong>FruitFlix</strong> account </p>
 
         <p>This link will expire in <strong> 15 minute</strong>.</p>
 
@@ -85,10 +85,10 @@ const forgetPassword = async (req, res) => {
         <a href=${process.env.ADMIN_URL}/reset-password/${token}  style="background:#22c55e;color:white;border:1px solid #22c55e; padding: 10px 15px; border-radius: 4px; text-decoration:none;">Reset Password </a>
 
         
-        <p style="margin-top: 35px;">If you did not initiate this request, please contact us immediately at support@dashtar.com</p>
+        <p style="margin-top: 35px;">If you did not initiate this request, please contact us immediately at <a href='mailto:fruitflix.shop@gmail.com'>fruitflix.shop@gmail.com</a></p>
 
         <p style="margin-bottom:0px;">Thank you</p>
-        <strong>Dashtar Team</strong>
+        <strong>FruitFlix Team</strong>
              `,
     };
     const message = 'Please check your email to reset password!';

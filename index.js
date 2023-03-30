@@ -4,15 +4,15 @@ const app = express();
 const cors = require('cors');
 const helmet = require('helmet');
 
-const connectDB = require('../config/db');
-const productRoutes = require('../routes/productRoutes');
-const userRoutes = require('../routes/userRoutes');
-const adminRoutes = require('../routes/adminRoutes');
-const orderRoutes = require('../routes/orderRoutes');
-const userOrderRoutes = require('../routes/userOrderRoutes');
-const categoryRoutes = require('../routes/categoryRoutes');
-const couponRoutes = require('../routes/couponRoutes');
-const { isAuth, isAdmin } = require('../config/auth');
+const connectDB = require('./config/db');
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const userOrderRoutes = require('./routes/userOrderRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const couponRoutes = require('./routes/couponRoutes');
+const { isAuth, isAdmin } = require('./config/auth');
 
 connectDB();
 
@@ -20,7 +20,10 @@ connectDB();
 // See: https://github.com/nfriedly/express-rate-limit
 // app.enable('trust proxy');
 app.set('trust proxy', 1);
-
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);
+  res.status(400).json({ message: err.message });
+});
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
@@ -42,10 +45,6 @@ app.use('/api/admin/', adminRoutes);
 app.use('/api/orders/', isAuth, orderRoutes);
 
 // Use express's default error handling middleware
-app.use((err, req, res, next) => {
-  if (res.headersSent) return next(err);
-  res.status(400).json({ message: err.message });
-});
 
 const PORT = process.env.PORT || 5000;
 

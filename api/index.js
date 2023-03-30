@@ -1,5 +1,6 @@
-require('dotenv').config();
 const express = require('express');
+require('dotenv').config();
+const app = express();
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -14,14 +15,13 @@ const couponRoutes = require('../routes/couponRoutes');
 const { isAuth, isAdmin } = require('../config/auth');
 
 connectDB();
-const app = express();
 
 // We are using this for the express-rate-limit middleware
 // See: https://github.com/nfriedly/express-rate-limit
 // app.enable('trust proxy');
 app.set('trust proxy', 1);
 
-app.use(express.json({ limit: '4mb' }));
+app.use(express.json());
 app.use(helmet());
 app.use(cors());
 
